@@ -6,10 +6,24 @@ RUN apk add --no-cache \
     git \
     nodejs \
     npm \
-    go \
     wget \
     ca-certificates \
-    libc6-compat
+    libc6-compat \
+    curl
+
+# Install Go 1.24.7 specifically
+RUN wget -O go.tar.gz https://golang.org/dl/go1.24.7.linux-amd64.tar.gz \
+    && tar -C /usr/local -xzf go.tar.gz \
+    && rm go.tar.gz
+
+# Set Go environment variables
+ENV PATH="/usr/local/go/bin:${PATH}"
+ENV GOROOT="/usr/local/go"
+ENV GOPATH="/go"
+ENV PATH="${GOPATH}/bin:${PATH}"
+
+# Verify Go installation
+RUN go version
 
 # Download and install Hugo Extended
 RUN wget -O hugo.tar.gz https://github.com/gohugoio/hugo/releases/download/v0.150.1/hugo_extended_0.150.1_linux-amd64.tar.gz \

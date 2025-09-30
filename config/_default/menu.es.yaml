@@ -1,0 +1,17 @@
+main:
+  - name: Inicio
+    url: /
+    weight: 10
+  - name: Blog
+    url: /blog/
+    weight: 20
+  - name: Acerca de
+    url: /about/
+    weight: 30
+  - name: Archivo
+    url: /archives/
+    weight: 40
+  - name: Búsqueda
+    url: /search/
+    weight: 50
+
