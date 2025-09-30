@@ -1,0 +1,29 @@
+version: '3.8'
+
+services:
+  hugo:
+    build: .
+    container_name: my-website-hugo
+    ports:
+      - "1313:1313"
+    volumes:
+      - .:/src
+      - /src/node_modules
+      - /src/resources
+    environment:
+      - HUGO_ENV=development
+    command: hugo server --bind 0.0.0.0 --port 1313 -D --disableFastRender --watch
+    restart: unless-stopped
+
+  # Optional: Hugo production build service
+  hugo-build:
+    build: .
+    container_name: my-website-build
+    volumes:
+      - .:/src
+      - ./public:/src/public
+    environment:
+      - HUGO_ENV=production
+    command: hugo --minify
+    profiles:
+      - build
