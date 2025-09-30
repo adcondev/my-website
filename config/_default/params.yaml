@@ -1,3 +1,4 @@
+# HB Stack Cards Theme Configuration
 # sass_transpiler: 'dartsass' # Uncomment to use Dart Sass, you need to install Dart Sass first.
 
 mainSections:
@@ -9,318 +10,78 @@ mainSections:
 
 description: Backend Developer especializado en automatización, APIs y desarrollo web
 keywords: Golang, Python, Backend, FastAPI, Gin, GORM, Docker, CI/CD, GitHub Actions
-# images:
-#   - site-feature-image.jpg
-
-# metaRobots: noindex, nofollow # Default value for Meta Tag robots
-# metaRobots:  # disable Meta Tag robots
 
 logo: images/logo.webp # Logo image. Default to images/logo.webp.
-# logo: false # Disable Logo
 brand: AdConDev
 
-palette: purple # Default palette. Optional. You'll need to clear the browser cache after modifying this.
-# Available palettes. Default to ALL. Empty array means disable.
-# palettes:
-#  - blue
-#  - blue-gray
-#  - brown
-#  - cyan
-#  - green
-#  - indigo
-#  - orange
-#  - pink
-#  - purple
-#  - red
-#  - teal
-#  - yellow
+# HB Stack Cards specific configuration
+hb:
+  header:
+    brand: AdConDev
+    logo: images/logo.webp
+    full_width: false
+    sticky: true
+    theme_toggle:
+      style: switch
+    search:
+      expand: false  # Reducir carga inicial
 
-# color: dark # light, dark or auto. Default to auto.
+  footer:
+    powered_by: true
 
-# fullWidth: true # Full width.
-# fixedHeader: false # Turn on/off fixed header.
+  blog:
+    paginate: 6  # Reducido de 10 a 6 para menor uso de memoria
+    post_date_format: ":date_long"
+    post_thumbnail: true
+    full_width: false
+    toc:
+      position: end
+    home:
+      pinned_posts_position: list
 
-dateFormat: ":date_long"
+  docs:
+    date_format: ":date_long"
 
-# Google Adsense
-googleAdsense:
+# Theme and styling
+theme:
+  palette: purple
+  color_mode: auto # light, dark or auto
 
-math: true # Enable math globally.
-# toc: false # Disable TOC globally.
-# tocPosition: content
-# breadcrumb: false # Disable breadcrumb
-# breadcrumbDivider: > # Breadcrumb divider
-diagram: true
-# socialShare: false # disable social network sharing
-# searchBar: false # disable search-bar
+# Math support (desactivado si no se usa)
+math: false
 
-# poweredBy: false # Whether to show powered by.
+# Optimizaciones de rendimiento
+performance:
+  lazy_loading: true
+  optimize_images: true
+  minify_css: true
+  minify_js: true
 
-# readingTime: false # Whether to display the reading time.
-# postDate: false # Whether to display the post date in the post meta section.
+# Configuración de imagen optimizada
+imaging:
+  resampleFilter: "Lanczos"
+  quality: 85  # Reducido de 95 para menor uso de memoria
+  anchor: "Smart"
 
-# featuredPostCount: 10 # The number of featured posts shown in sidebar. Turn off by setting it to false.
-# recentPostCount: 10 # The number of recent posts shown in sidebar. Turn off by setting it to false.
-# relatedPostCount: 10 # The number of related posts. Turn off by setting it to false.
-# categoryCount: 10 # The number of categories shown in sidebar. Turn off by setting it to false.
-# tagCount: 10 # The number of tags shown in sidebar. Turn off by setting it to false.
-# seriesCount: 20 # The number of series shown in sidebar. Turn off by setting it to false.
-# taxonomyPaginate: 5 # Default to 10.
-taxonomyPostCount: 20 # The number of taxonomy's posts. Turn off by setting it to false.
-countTaxonomyPosts: true # Count posts of taxonomy.
+# Table of contents
+toc:
+  enable: true
+  position: content
 
-# sidebarTaxonomies: [categories, tags, series] # The order of taxonomies on the sidebar.
+# Breadcrumb
+breadcrumb:
+  enable: true
 
-# pinnedPost: false # Turn on/off pinned posts.
-pinnedPostCount: 3 # The number of pinned posts.
-
-# Custom CSS and JS
-customCSS:
-customJS:
-
-tocWordCount: 1 # TOC is displayed only if the post's word count exceeds this value.
-
-titleCase: true # Capitalized title.
-
-viewer: true # Image Viewer
-
-# backgroundImage: ['/images/bg-light.png', '/images/bg-dark.png']
-# rss: home # link the RSS button to homepage all the times.
-
-sidebar:
-  fixed: true
-  archives: true # Enable archives widget
-  # taxonomiesToggle: false # Disable taxonomy toggle
-  categories: true # Enable categories widget
-  tags: true # Enable tags widget
-  series: true # Enable series widget
-  authors: true # Enable authors widget
-  # postsToggle: false # Disable posts toggle
-  featuredPosts: true # Enable featured posts widget
-  recentPosts: true # Enable featured posts widget
-  # collapsed: true # Collapse sidebar widgets by default on small screens.
-
-codeBlock:
-  # maxLines: 8
-  lineNos: true # true/false represents that show/hide the line numbers by default.
-
-post:
-  # excerpt: description
-  # excerptMaxLength: 120
-  copyright: true # Whether to display copyright section on each post.
-  # plainifyExcerpt: false # Format excerpt in HTML if false.
-  featuredImage: true # Show the featured image above the content.
-  numberifyHeadings: true # Count headings automatically.
-  # numberifyHeadingsEndLevel: 4 # The depth of headings to count. Default to 6.
-  numberifyHeadingsSeparator: . # The separator between of number and headings.
-  # tocStyleType: decimal # The TOC's CSS list-style-type property.
-  imageTitleAsCaption: true
-  # panel: false # Disable the post panel.
-  # nav: false # Disable post navigations.
-  # The page position after clicking the read more button, read more from content if true. Default to the beginning of page.
-  # It supports only of the manual summaries spliting via <!--more-->.
-  # readMoreFromContent: true
-
-archive:
-  paginate: 20 # Archive pagination. Default to 100.
-  # basePath = "/archiv" # The base path of archive pages.
-  # dateFormat: 01-02 # Archive date format. Default to Jan 2.
-
-analytics:
-# baidu:  # Baidu Analytics
-
-# Site verification
-siteVerification:
-  google:
-  bing:
-  baidu:
-  baiduUnion:  # Baidu Union
-  so:
-  sogou:
-  shenma:
-
-creativeCommons:
-  by: true # Credit must be given to you, the creator.
-  nc: true # Only noncommercial use of your work is permitted.
-# nd: true # No derivatives or adaptations of your work are permitted.
-# sa: true # Adaptations must be shared under the same terms.
-
-# utterances:
-# repo: adcondev/hugo-theme-bootstrap-skeleton # Replace with your repository.
-#issueTerm: pathname # pathname, url, title, og:title
-# label: comment
-# By default, light and dark mode correspond to github-light and github-dark, respectively.
-# Optional values: github-light, github-dark, preferred-color-scheme, github-dark-orange, icy-dark, dark-blue, photon-dark.
-#theme:
-
-#staticman:
-#endpoint: https://yourstaticmaninstance # Required, replace with your own Staticman instance.
-#repo: user/repo # Required
-#service: github # or gitlab. Default to GitHub.
-#branch: main # Default to master.
-#property: comments # Default to comments.
-#sorting: desc # Default to asc.
-#reCaptchaKey: "" # The reCaptcha site key.
-#reCaptchaSecret: "" # The reCaptcha encrypted secret. You'll need to encrypt plain secret via https://yourstaticmaninstance/v3/encrypt/PLAINSECRET.
-#extraFields: # Extra fields. Available fiedls: url.
-#  - url
-#requiredFields: # Extra required fields. Available fields: email and the extra fields.
-#  - email
-#  - url
-#paginate: 5 # Default to 10.
-#moderation: false # Same as Staticman's moderation.
-
-# See https://giscus.app
-giscus:
-  repo: "adcondev/my-website" # required.
-  repoId: "R_kgDOHJi95g" # required.
-  category: "General" # required.
-  categoryId: "DIC_kwDOHJi95s4CTy6q" # required.
-  # theme: "dark" # Default to auto.
-  # mapping: "title" # Default to pathname.
-  # inputPosition: "bottom" # Default to top.
-  # reactions: false # Disable reactions.
-  # metadata: true # Emit discussion metadata.
-  # lang: "en" # Specify language, default to site language.
-  # lazyLoading: false # Default to true.
-
+# Search
 search:
-  paginate: 5 # Pagination. Default to 10.
-  # resultContentWordCount: 240 # The maximum word count of result content for displaying.
-  # Fuse.js options. See https://fusejs.io/api/options.html.
-  fuse:
-    # ignoreLocation: true
-    # location: 0
-    # isCaseSensitive: false
-    # minMatchCharLength: 1
-    threshold: 0.1
-    # distance: 100
-    # useExtendedSearch: true
+  enable: true
 
-  #docsearch:
-  # https://docsearch.algolia.com/docs/api
-  # container: ".search-bar" # replace it if necessary, default to '.search-bar'.
-  # appId: ""
-  # apiKey: ""
-  # indexName: ""
-  # debug: true
-
-reward:
-  #alipay: images/reward/alipay.png
-  #wechat: images/reward/wechat.png
-  paypal: images/reward/paypal.png
-  patreon: images/reward/patreon.png
-  #liberapay: images/reward/liberapay.png
-
-  #share:
-  #addThis:  # AddThis pubid.
-
-  #actionsPanel:
-  # disabled: true
-
-# Comment or remove this settings to disable font size switcher.
-fontSize:
-  extraSmall: .8rem
-  small: .9rem
-  large: 1.1rem
-  extraLarge: 1.2rem
-
-pwa:
-  manifest:
-    name: AdConDev - Backend Developer
-    short_name: AdConDev
-    # display: fullscreen # Default to standalone.
-    description: Backend Developer especializado en automatización y APIs
-    # theme_color:
-    # background_color: 
-
-    # Icons
-    # [[pwa.manifest.icons]]
-    #   sizes: 96x96
-    #   src: /images/icons/icon-96x96.png
-    # [[pwa.manifest.icons]]
-    #   sizes: 144x144
-    #   src: /images/icons/icon-144x144.png
-
-contact:
-  endpoint: https://getform.io/f/56041c81-9e03-4c24-b9c5-61238854d4cd # Backend endpoint, remove this line if you're using Netlify.
-    # file: true # Enable file upload
-    # fileField: image # The name of file field.
-    # reCaptcha:
-  # siteKey: ""
-
-repo:
-  url: https://github.com/adcondev/my-website
-  branch: main
-  # subPath: exampleSite
-  # dateFormat: 02/01/2006, 15:04:05 PM
-
-topAppBar:
-  # See https://hbs.razonyang.com/v1/en/docs/widgets/social-links/.
-  social:
-    github: adcondev
-    #patreon: adcondev
-    #paypal: adcondev
-
-docs:
-  nav:
-    expand: false # Expand docs navigation.
-    reduceFontSize: true # Reduce font size of children navigation.
-
-  #feeds:
-  # content: true
-
+# Social links
 social:
-  # See https://hbs.razonyang.com/v1/en/docs/widgets/social-links/.
+  github: https://github.com/adcondev
+  linkedin: https://linkedin.com/in/adrian-mazatlan
   email: adcondev@gmail.com
-  #facebook: yourfacebookusername
-  github: adcondev
-  #gitlab: yourgitlabusername
-  linkedin: adcondev
-  #xing: yourxingusername
-  #stackoverflow: yourstackoverflowuserid
-  twitter: adcondev
-  #weibo: yourweibousername
-  #zhihu: yourzhihuusername
-  #instagram: yourinstagramusername
-  #quora: yourquorausername
-  #tumblr: yourtumblrusername
-  #reddit: yourredditusername
-  #telegram: yourtelegramusername
-  #qq: yourqqnumber
-  dockerhub: adcondev
-  #bitbucket: yourbitbucketworkspaceid
-  #kaggle: yourkaggleusername
-  #medium: yourmediumusername # Medium username or custom domain(e.g. https://custom.domain.tld).
-  #lastfm: yourlastfmusername
-  #bilibili: yourbilibiliuserid
-  #youtube: youryoutubechannelid
-  #discord: yourdiscordinvitecode
-  #discourse: https://yourforum.tld
-  #facebookgroup: yourfacebookgroupname
-  #tiktok: yourtiktokusername
-  #pinterest: yourpinterestusername
-  #mastodon: yourmastodonusername
-  #liberapay: yourliberapayaccount
-  #paypal: adcondev
-  #patreon: adcondev
-  #tipeee: yourtipeeeaccount-fr
 
-author:
-  name: Adrián
-  avatar: images/avatar.jpg # Avatar image. Default to "images/profile.webp".
-  bio: 'Backend Developer especializado en Golang, Python, automatización y APIs.'
-  company: AdConDev # HTML markup are supported, such as: <a href="https://example.com" target="_blank" rel="noopener noreferrer">Company</a>.
-  location: Mazatlán, México # HTML markup are supported, such as: <a href='https://www.openstreetmap.org/search?query=Earth'>Earth</a>.
-  # about: https://razonyang.com # The external about page. The internal about page will be used if not set.
-  params: {
-    # layout: compact
-  }
-  # See https://hbs.razonyang.com/v1/en/docs/widgets/social-links/.
-  social:
-    email: adcondev@gmail.com
-    github: adcondev
-    twitter: adcondev
-    linkedin: adcondev
-    dockerhub: adcondev
-    rss: "" # Remove RSS
+# Comment system (you can configure later)
+# comments:
+#   provider: giscus

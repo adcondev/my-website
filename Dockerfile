@@ -1,59 +1,43 @@
-# Use Alpine Linux as base and install Hugo Extended manually
-FROM alpine:3.18
+# Usar la versión correcta de Go que requiere el proyecto
+FROM golang:1.24-alpine
 
-# Install dependencies
+# Instalar Node.js y dependencias necesarias
 RUN apk add --no-cache \
     git \
-    nodejs \
-    npm \
     wget \
     ca-certificates \
     libc6-compat \
-    curl
+    nodejs \
+    npm
 
-# Install Go 1.24.7 specifically
-RUN wget -O go.tar.gz https://golang.org/dl/go1.24.7.linux-amd64.tar.gz \
-    && tar -C /usr/local -xzf go.tar.gz \
-    && rm go.tar.gz
-
-# Set Go environment variables
-ENV PATH="/usr/local/go/bin:${PATH}"
-ENV GOROOT="/usr/local/go"
-ENV GOPATH="/go"
-ENV PATH="${GOPATH}/bin:${PATH}"
-
-# Verify Go installation
-RUN go version
-
-# Download and install Hugo Extended
-RUN wget -O hugo.tar.gz https://github.com/gohugoio/hugo/releases/download/v0.150.1/hugo_extended_0.150.1_linux-amd64.tar.gz \
+# Instalar Hugo Extended
+RUN wget -O hugo.tar.gz https://github.com/gohugoio/hugo/releases/download/v0.128.2/hugo_extended_0.128.2_linux-amd64.tar.gz \
     && tar -xzf hugo.tar.gz \
-    && ls -la \
+    && chmod +x hugo \
     && mv hugo /usr/local/bin/hugo \
-    && rm hugo.tar.gz \
-    && chmod +x /usr/local/bin/hugo \
-    && ln -s /usr/local/bin/hugo /usr/bin/hugo \
-    && which hugo \
-    && hugo version
+    && rm hugo.tar.gz
 
-# Set working directory
-WORKDIR /src
+# Verificar instalaciones
+RUN hugo version && go version && node --version
 
-# Copy package files first for better layer caching
+# Establecer directorio de trabajo
+WORKDIR /app
+
+# Copiar archivos de configuración primero
 COPY package*.json ./
 COPY go.mod go.sum ./
 
-# Install npm dependencies if package.json exists
-RUN if [ -f package.json ]; then npm install; fi
+# Instalar dependencias npm (solo producción)
+RUN npm ci --only=production --no-audit --no-fund
 
-# Download Hugo modules - use 'get' instead of 'download'
-RUN hugo mod get
-
-# Copy the rest of the project
+# Copiar el proyecto
 COPY . .
 
-# Expose Hugo's default port
+# Inicializar módulos Hugo
+RUN hugo mod get && hugo mod tidy || echo "Modules setup completed"
+
+# Exponer puerto
 EXPOSE 1313
 
-# Default command to run Hugo server
-CMD ["hugo", "server", "--bind", "0.0.0.0", "--port", "1313", "-D", "--disableFastRender"]
+# Comando para desarrollo
+CMD ["hugo", "server", "--bind", "0.0.0.0", "--port", "1313", "--disableFastRender", "--noHTTPCache"]

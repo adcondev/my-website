@@ -25,7 +25,27 @@ taxonomies:
   authors: authors
 
 build:
-  writeStats: true
+  writeStats: false  # Desactivado para reducir uso de memoria
+  noJSConfigInAssets: true
+  useResourceCacheWhen: fallback
+
+# Optimización de cache
+caches:
+  assets:
+    dir: ":cacheDir/assets"
+    maxAge: "24h"
+  getcsv:
+    dir: ":cacheDir/getcsv"
+    maxAge: "1h"
+  getjson:
+    dir: ":cacheDir/getjson"
+    maxAge: "1h"
+  images:
+    dir: ":cacheDir/images"
+    maxAge: "24h"
+  modules:
+    dir: ":cacheDir/modules"
+    maxAge: "24h"
 
 permalinks:
   news: /news/:year/:month/:title/
@@ -33,8 +53,9 @@ permalinks:
 
 module:
   imports:
-    - path: github.com/razonyang/hugo-theme-bootstrap
-#   proxy: https://goproxy.cn
+    - path: github.com/hbstack/theme-cards
+  # Optimización de proxy para China (si es necesario)
+  # proxy: https://goproxy.cn
 
 # services:
 #   disqus:
@@ -46,3 +67,18 @@ markup:
     lineNos: true
     noClasses: false
     lineNumbersInTable: false
+  goldmark:
+    renderer:
+      unsafe: true
+    parser:
+      wrapStandAloneImageWithinParagraph: false
+      attribute:
+        block: true
+        title: true
+  tableOfContents:
+    endLevel: 3
+    ordered: false
+    startLevel: 2
+
+# Suprimir advertencias menores
+ignoreLogs: ['warning-goldmark-raw-html']

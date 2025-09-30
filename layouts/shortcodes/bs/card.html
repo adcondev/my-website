@@ -1,0 +1,11 @@
+{{- $class := .Get "class" | default "" -}}
+{{- $style := .Get "style" | default "" -}}
+
+{{- $cardClass := "card" -}}
+{{- if $class -}}
+  {{- $cardClass = printf "%s %s" $cardClass $class -}}
+{{- end -}}
+
+<div class="{{ $cardClass }}"{{ if $style }} style="{{ $style }}"{{ end }}>
+  {{ .Inner }}
+</div>

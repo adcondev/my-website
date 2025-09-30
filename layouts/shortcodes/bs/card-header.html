@@ -1,0 +1,10 @@
+{{- $class := .Get "class" | default "" -}}
+
+{{- $headerClass := "card-header" -}}
+{{- if $class -}}
+  {{- $headerClass = printf "%s %s" $headerClass $class -}}
+{{- end -}}
+
+<div class="{{ $headerClass }}">
+  {{ .Inner | markdownify }}
+</div>

@@ -1,5 +1,3 @@
-version: '3.8'
-
 services:
   hugo:
     build: .
@@ -7,23 +5,28 @@ services:
     ports:
       - "1313:1313"
     volumes:
-      - .:/src
-      - /src/node_modules
-      - /src/resources
+      # Solo montar archivos de contenido que necesitan watch
+      - ./content:/app/content:ro
+      - ./config:/app/config:ro
+      - ./assets:/app/assets:ro
+      - ./layouts:/app/layouts:ro
+      - ./static:/app/static:ro
+      # Volumen para cache (evita conflictos)
+      - hugo_cache:/tmp/hugo_cache
     environment:
       - HUGO_ENV=development
-    command: hugo server --bind 0.0.0.0 --port 1313 -D --disableFastRender --watch
+      - HUGO_CACHEDIR=/tmp/hugo_cache
+    # Comando simplificado sin watch de archivos problemáticos
+    command: hugo server --bind 0.0.0.0 --port 1313 --disableFastRender --noHTTPCache --poll 1000ms
     restart: unless-stopped
+    # Límites de recursos para evitar sobrecarga
+    deploy:
+      resources:
+        limits:
+          memory: 256M
+          cpus: '0.5'
+        reservations:
+          memory: 128M
 
-  # Optional: Hugo production build service
-  hugo-build:
-    build: .
-    container_name: my-website-build
-    volumes:
-      - .:/src
-      - ./public:/src/public
-    environment:
-      - HUGO_ENV=production
-    command: hugo --minify
-    profiles:
-      - build
+volumes:
+  hugo_cache:

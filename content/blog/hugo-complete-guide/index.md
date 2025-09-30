@@ -521,15 +521,15 @@ graph LR
 >
 > — Cory House
 
-{{< bs/alert danger >}}
+{{< bs/alert type="danger" >}}
 **Importante**: Siempre valida las entradas del usuario antes de procesarlas en tu API.
 {{< /bs/alert >}}
 
-{{< bs/alert info >}}
+{{< bs/alert type="info" >}}
 **Consejo**: Usa herramientas como Postman o curl para probar tus endpoints durante el desarrollo.
 {{< /bs/alert >}}
 
-{{< bs/alert success >}}
+{{< bs/alert type="success" >}}
 **Logro desbloqueado**: Has implementado correctamente autenticación JWT en tu API.
 {{< /bs/alert >}}
 

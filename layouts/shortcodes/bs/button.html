@@ -1,0 +1,33 @@
+{{- $style := .Get "style" | default "primary" -}}
+{{- $size := .Get "size" | default "" -}}
+{{- $href := .Get "href" | default "" -}}
+{{- $type := .Get "type" | default "button" -}}
+{{- $class := .Get "class" | default "" -}}
+{{- $outline := .Get "outline" | default false -}}
+{{- $icon := .Get "icon" | default "" -}}
+
+{{- $btnClass := "btn" -}}
+{{- if $outline -}}
+  {{- $btnClass = printf "%s btn-outline-%s" $btnClass $style -}}
+{{- else -}}
+  {{- $btnClass = printf "%s btn-%s" $btnClass $style -}}
+{{- end -}}
+
+{{- if $size -}}
+  {{- $btnClass = printf "%s btn-%s" $btnClass $size -}}
+{{- end -}}
+{{- if $class -}}
+  {{- $btnClass = printf "%s %s" $btnClass $class -}}
+{{- end -}}
+
+{{- if $href -}}
+<a href="{{ $href }}" class="{{ $btnClass }}" role="button">
+  {{- if $icon -}}<i class="{{ $icon }} me-2"></i>{{- end -}}
+  {{ .Inner | markdownify }}
+</a>
+{{- else -}}
+<button type="{{ $type }}" class="{{ $btnClass }}">
+  {{- if $icon -}}<i class="{{ $icon }} me-2"></i>{{- end -}}
+  {{ .Inner | markdownify }}
+</button>
+{{- end -}}

@@ -1,7 +1,16 @@
-headers:
-  for: /*
-  values:
-    Referrer-Policy: strict-origin-when-cross-origin
-    X-Content-Type-Options: nosniff
-    X-Frame-Options: deny
-    X-XSS-Protection: 1; mode=block
+# Configuración del servidor Hugo optimizada para desarrollo
+server:
+  headers:
+    - for: "/**"
+      values:
+        Cache-Control: "public, max-age=86400"
+
+# Configuración de watch optimizada
+watching:
+  includePattern: "^(content|data|i18n|layouts|static|assets)/"
+  excludePattern: "^(public|resources|node_modules|\\.git)/"
+
+# Límites de memoria para desarrollo
+limits:
+  memory: "256MB"
+  timeout: "30s"

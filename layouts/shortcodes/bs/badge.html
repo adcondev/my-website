@@ -1,0 +1,13 @@
+{{- $style := .Get "style" | default "primary" -}}
+{{- $pill := .Get "pill" | default false -}}
+{{- $class := .Get "class" | default "" -}}
+
+{{- $badgeClass := printf "badge bg-%s" $style -}}
+{{- if $pill -}}
+  {{- $badgeClass = printf "%s rounded-pill" $badgeClass -}}
+{{- end -}}
+{{- if $class -}}
+  {{- $badgeClass = printf "%s %s" $badgeClass $class -}}
+{{- end -}}
+
+<span class="{{ $badgeClass }}">{{ .Inner | markdownify }}</span>

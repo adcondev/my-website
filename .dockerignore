@@ -1,37 +1,27 @@
-# Git files
-.git
-.gitignore
-
-# Hugo generated files
-/public/
-/resources/_gen/
-hugo_stats.json
-/.hugo_build.lock
-
-# Node modules (will be installed in container)
+# Archivos y directorios que causan problemas
 node_modules/
-npm-debug.log*
+public/
+resources/
+.hugo_build.lock
+hugo_stats.json
 
-# OS generated files
+# Archivos de desarrollo
+.git/
+.gitignore
+.idea/
+*.log
+*.tmp
+
+# Archivos de sistema
 .DS_Store
 Thumbs.db
 
-# IDE files
-.vscode/
-.idea/
-*.swp
-*.swo
-
-# Docker files (avoid recursion)
+# Archivos de Docker
 Dockerfile
-.dockerignore
+docker-compose.yml
+README-Docker.md
 
-# Temporary files
-tmp/
-*.tmp
-*.log
-
-# Hugo executables
-hugo.exe
-hugo.darwin
-hugo.linux
+# Archivos temporales de Hugo
+/public
+/resources/_gen
+.hugo_build.lock
